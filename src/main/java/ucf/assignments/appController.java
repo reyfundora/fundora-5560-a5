@@ -38,7 +38,6 @@ public class appController implements Initializable {
         new menuHelp().runAbout();
     }
 
-
     // Controller section for Edit menu
     public void clickNew() {
         try {
@@ -60,30 +59,15 @@ public class appController implements Initializable {
     }
 
     // Controller section for TableView
-    @FXML private TableView<itemSetGet> tableView;
-    @FXML private TableColumn<itemSetGet, Double> columnValue;
-    @FXML private TableColumn<itemSetGet, String> columnSerial;
-    @FXML private TableColumn<itemSetGet, String> columnName;
+    @FXML public TableView<itemSetGet> tableView;
+    @FXML public TableColumn<itemSetGet, Double> columnValue;
+    @FXML public TableColumn<itemSetGet, String> columnSerial;
+    @FXML public TableColumn<itemSetGet, String> columnName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        try {
-            columnValue.setCellValueFactory(new PropertyValueFactory("value"));
-            columnSerial.setCellValueFactory(new PropertyValueFactory("serial"));
-            columnName.setCellValueFactory(new PropertyValueFactory("name"));
-
-            tableView.setItems(getTable());
-        }
-        catch (NullPointerException e) {System.out.print("null");}
-    }
-
-    public ObservableList<itemSetGet> getTable() {
-        ObservableList<itemSetGet> test = FXCollections.observableArrayList();
-        test.add(new itemSetGet(values.get(0), serials.get(0), names.get(0)));
-
-        return test;
+        columnValue.setCellValueFactory(new PropertyValueFactory<itemSetGet, Double>("value"));
+        columnSerial.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("serial"));
+        columnName.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("name"));
     }
 }
-
-
-
