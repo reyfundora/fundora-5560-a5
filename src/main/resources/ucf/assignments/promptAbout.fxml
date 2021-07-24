@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="504.0" prefWidth="600.0" style="-fx-background-color: #a3e4d7;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.appController">
+   <children>
+      <TextArea editable="false" layoutX="174.0" layoutY="66.0" prefHeight="200.0" prefWidth="200.0" style="-fx-control-inner-background: #e8f8f5;" text="    &#10;    ~~~ Todo List Application v1.0 ~~~&#10;    &#10;    Lead Developer: Rey Fundora&#10;    Junior Developer: Professor Hollander&#10;    Client: University of Central Florida&#10;&#10;    Start Date: July 5, 2021&#10;    Release Date: July 12, 2021&#10;&#10;    Credits:&#10;    Anti-Juan (Taught me how to -fx-control-inner-background)&#10;    Asahiii (Telling me where design stuff is on SceneBuilder.)&#10;    Grunt (Making me laugh on Discord with their dedications.)&#10;    Juan Uzumaki (For trolling me.)&#10;    m4ntle (Making me laugh on Discord with their dedications.)&#10;&#10;    This application is protected by U.S. and International copyright laws. Reproduction and&#10;    distribution of the application without verbal or written permission of the creator is &#10;    prohibited.&#10;    © Fundora Foundation LLC.&#10;" wrapText="true" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></TextArea>
+   </children>
+</AnchorPane>

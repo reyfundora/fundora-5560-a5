@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class startScene extends Application{
+public class startScene extends Application {
 
     public static void main (String[] args) {
         launch(args);
@@ -22,11 +22,11 @@ public class startScene extends Application{
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("TodoListApp.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("inventoryApp.fxml"));
             Scene scene = new Scene(root);
 
             primaryStage.setScene(scene);
-            primaryStage.setTitle("To-Do List!");
+            primaryStage.setTitle("Inventory Manager!");
             primaryStage.show();
         }
         catch (IOException e){
