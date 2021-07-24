@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.*;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -51,6 +52,21 @@ public class appController implements Initializable {
             popStage.setScene(scene);
             popStage.setTitle("New Item!");
             popStage.setResizable(false);
+            popStage.show();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void clickDelete() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("promptDelete.fxml"));
+            Scene scene = new Scene(root);
+
+            Stage popStage = new Stage();
+            popStage.setScene(scene);
+            popStage.setTitle("Delete Item!");
             popStage.show();
         }
         catch (IOException e){
