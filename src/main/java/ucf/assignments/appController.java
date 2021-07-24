@@ -2,19 +2,21 @@ package ucf.assignments;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.collections.ObservableList;
+import javafx.fxml.*;
 import javafx.scene.Scene;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-import javax.swing.text.html.ListView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class appController {
+import static ucf.assignments.menuEdit.*;
+
+public class appController implements Initializable {
 
     // Controller section for File menu
     public void clickOpen() {
@@ -26,6 +28,16 @@ public class appController {
     public void clickClose() {
         Platform.exit();
     }
+
+    // Controller section for Help menu
+    public void clickGettingStarted() {
+        new menuHelp().runGettingStarted();
+    }
+
+    public void clickAbout() {
+        new menuHelp().runAbout();
+    }
+
 
     // Controller section for Edit menu
     public void clickNew() {
@@ -47,39 +59,27 @@ public class appController {
         }
     }
 
-    // Controller section for Help menu
-    public void clickGettingStarted() {
-        new menuHelp().runGettingStarted();
-    }
-
-    public void clickAbout() {
-        new menuHelp().runAbout();
-    }
-
     // Controller section for TableView
-    @FXML public TableView<tableSetGet> tableView;
-    @FXML public TableColumn<tableSetGet, String> dateColumn;
-    @FXML public TableColumn<tableSetGet, String> descriptionColumn;
-    @FXML private ListView<String> listView;
-
-    public void refresh() { listView.refresh(); }
+    @FXML private TableView<itemSetGet> tableView;
+    @FXML private TableColumn<itemSetGet, Double> columnValue;
+    @FXML private TableColumn<itemSetGet, String> columnSerial;
+    @FXML private TableColumn<itemSetGet, String> columnName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            dateColumn.setCellValueFactory(new PropertyValueFactory("date"));
-            descriptionColumn.setCellValueFactory(new PropertyValueFactory("description"));
+            columnValue.setCellValueFactory(new PropertyValueFactory("value"));
+            columnSerial.setCellValueFactory(new PropertyValueFactory("serial"));
+            columnName.setCellValueFactory(new PropertyValueFactory("name"));
 
             tableView.setItems(getTable());
-            listView.getItems().addAll(items[0]);
-            listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         }
         catch (NullPointerException e) {System.out.print("null");}
     }
 
-    public ObservableList<tableSetGet> getTable() {
-        ObservableList<tableSetGet> test = FXCollections.observableArrayList();
-        test.add(new tableSetGet(items[0], items[1]));
+    public ObservableList<itemSetGet> getTable() {
+        ObservableList<itemSetGet> test = FXCollections.observableArrayList();
+        test.add(new itemSetGet(values.get(0), serials.get(0), names.get(0)));
 
         return test;
     }

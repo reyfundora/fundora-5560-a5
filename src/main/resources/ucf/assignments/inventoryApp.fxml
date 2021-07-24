@@ -34,11 +34,11 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView editable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <TableView fx:id="tableView" editable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <columns>
-          <TableColumn prefWidth="150.0" text="Value" />
-          <TableColumn prefWidth="150.0" text="Serial Number" />
-            <TableColumn minWidth="210.0" prefWidth="150.0" text="Name" />
+          <TableColumn fx:id="columnValue" prefWidth="150.0" text="Value" />
+          <TableColumn fx:id="columnSerial" prefWidth="150.0" text="Serial Number" />
+            <TableColumn fx:id="columnName" minWidth="210.0" prefWidth="150.0" text="Name" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
