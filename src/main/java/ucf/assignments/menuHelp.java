@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class menuHelp {
+    static int testGettingStarted, testAbout;
 
     // Prompts a pop up with a detailed paragraph on how to use the app
     public void runGettingStarted() {
@@ -27,6 +28,8 @@ public class menuHelp {
         catch (IOException e){
             e.printStackTrace();
         }
+
+        testGettingStarted++;
     }
 
     // Prompts a pop up with creator name, school name, class and professor names,
@@ -44,5 +47,7 @@ public class menuHelp {
         catch (IOException e){
             e.printStackTrace();
         }
+
+        testAbout++;
     }
 }

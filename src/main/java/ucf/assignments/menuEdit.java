@@ -10,7 +10,7 @@ import java.io.IOException;
 public class menuEdit {
     public appController appController;
 
-    public void clickButtonAdd(ActionEvent actionEvent) {
+    public void clickButtonAdd() {
 
     }
 }
