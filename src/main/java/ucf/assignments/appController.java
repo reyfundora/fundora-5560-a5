@@ -1,5 +1,6 @@
 package ucf.assignments;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
 public class appController {
@@ -11,6 +12,7 @@ public class appController {
     }
 
     public void clickClose(ActionEvent actionEvent) {
+        Platform.exit();
     }
 
     public void clickGettingStarted(ActionEvent actionEvent) {
