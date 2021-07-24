@@ -1,26 +1,53 @@
 package ucf.assignments;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class appController {
 
-    public void clickOpen(ActionEvent actionEvent) {
+    // Controller section for File menu
+    public void clickOpen() {
     }
 
-    public void clickSave(ActionEvent actionEvent) {
+    public void clickSave() {
     }
 
-    public void clickClose(ActionEvent actionEvent) {
+    public void clickClose() {
         Platform.exit();
     }
 
-    public void clickGettingStarted(ActionEvent actionEvent) {
+    // Controller section for Edit menu
+    public void clickNew() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("promptNew.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            menuEdit controller = loader.getController();
+            controller.appController = this;
+
+            Stage popStage = new Stage();
+            popStage.setScene(scene);
+            popStage.setTitle("New Item!");
+            popStage.setResizable(false);
+            popStage.show();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    // Controller section for Help menu
+    public void clickGettingStarted() {
         new menuHelp().runGettingStarted();
     }
 
-    public void clickAbout(ActionEvent actionEvent) {
+    public void clickAbout() {
         new menuHelp().runAbout();
     }
+
 
 }
