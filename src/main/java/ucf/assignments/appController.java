@@ -83,6 +83,11 @@ public class appController implements Initializable {
         // Deletes selected items
         int index = tableView.getSelectionModel().getSelectedIndex();
         if (index >= 0) tableView.getItems().remove(index);
+
+        values.remove(index);
+        serials.remove(index);
+        names.remove(index);
+        itemCounter--;
     }
 
     // Controller section for TableView
