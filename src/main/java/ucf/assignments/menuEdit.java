@@ -51,6 +51,10 @@ public class menuEdit {
 
             // Checks if name is between 2 and 256 characters
             String name = addName.getText();
+            if (name.length() < 2 || name.length() > 256) {
+                int[] errorArray = new int[1];
+                errorArray[5] = 1;
+            }
 
             // Adds inputs to an organizable arraylist
             serials.add(serial);
@@ -75,6 +79,16 @@ public class menuEdit {
         }
         catch (ArithmeticException e) {
             Parent root = FXMLLoader.load(getClass().getResource("promptErrorTwo.fxml"));
+            Scene scene = new Scene(root);
+
+            Stage popStage = new Stage();
+            popStage.setScene(scene);
+            popStage.setTitle("Serial Number Error");
+            popStage.setResizable(false);
+            popStage.show();
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            Parent root = FXMLLoader.load(getClass().getResource("promptErrorThree.fxml"));
             Scene scene = new Scene(root);
 
             Stage popStage = new Stage();
