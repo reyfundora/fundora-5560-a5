@@ -1,0 +1,68 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+class startScene {
+main(String[] args)
+start(Stage primaryStage)
+}
+
+class appController {
+clickOpen()
+clickSave()
+clickClose()
+
+clickGettingStarted()
+clickAbout()
+
+clickNew()
+clickDelete()
+rightClickDelete()
+
+initialize(URL url, ResourceBundle rb)
+
+clickSearch()
+getTableSearch()
+clickDone()
+}
+
+class itemSetGet {
+itemSetGet()
+
+getValue()
+valueProperty()
+setValue()
+
+getSerial()
+serialProperty()
+setSerial()
+
+getName()
+nameProperty()
+setName()
+}
+
+class menuEdit {
+clickButtonAdd()
+getTable()
+clickButtonOk()
+}
+
+class menuFile {
+runOpen()
+runSave()
+}
+
+class menuHelp {
+runGettingStarted()
+runAbout()
+}
+
+startScene -|> appController
+appController --> itemSetGet
+appController <-- itemSetGet
+appController -- menuEdit
+appController -- menuFile
+appController -- menuHelp
+
+
+@enduml

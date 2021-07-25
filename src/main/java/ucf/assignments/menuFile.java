@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class menuFile {
@@ -20,24 +22,25 @@ public class menuFile {
 
         List<File> f = fc.showOpenMultipleDialog(null);
     }
+
     public void runSave() {
-            FileChooser fc = new FileChooser();
-            fc.setInitialDirectory(new File("C:\\temp"));
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Save Inventory List");
+        File selectedFile = null;
+        while (selectedFile == null) {
+            selectedFile = fc.showSaveDialog(null);
+        }
 
-            fc.setTitle("Save Inventory List");
-            fc.setInitialFileName("inventory");
+        File file = new File(String.valueOf(selectedFile));
 
-            fc.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("TSV File", ".txt"),
-                    new FileChooser.ExtensionFilter("HTML File", ".html"),
-                    new FileChooser.ExtensionFilter("JSON File", ".json"));
+        PrintWriter outFile = null;
+        try {
+            outFile = new PrintWriter(file);
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
-            try
-            {
-                File file = fc.showSaveDialog(null);
-                fc.setInitialDirectory(file.getParentFile());
-                //TODO save
-            }
-            catch (Exception e) { System.out.print("");}
+        outFile.close();
     }
 }
