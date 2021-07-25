@@ -17,11 +17,13 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class menuEdit {
     public appController appController;
     public TextArea addValue, addSerial, addName;
-    public Button buttonAdd, buttonOk, buttonOkTwo;
+    public Button buttonAdd, buttonOk;
 
     static ArrayList<String> values = new ArrayList<>();
     static ArrayList<String> serials = new ArrayList<>();
@@ -37,8 +39,17 @@ public class menuEdit {
             String outputValue = "$" + bdValueString;
             values.add(outputValue);
 
-            // Turns user input for serial and name into readable variables
+            // Checks if inputted serial number is in the correct ten length format with no specials
             String serial = addSerial.getText();
+
+            Pattern pattern = Pattern.compile("[a-zA-Z0-9]*");
+            Matcher matcher = pattern.matcher(serial);
+
+            if (serial.length() != 10 || !matcher.matches()) {
+                int error = 10 / 0;
+            }
+
+            // Checks if name is between 2 and 256 characters
             String name = addName.getText();
 
             // Adds inputs to an organizable arraylist
@@ -52,15 +63,25 @@ public class menuEdit {
             appController.tableView.setItems(getTable());
         }
         // Error prompt that explains the need for only numerical input
-        catch (Exception e) {
+        catch (NumberFormatException e) {
                 Parent root = FXMLLoader.load(getClass().getResource("promptErrorOne.fxml"));
                 Scene scene = new Scene(root);
 
                 Stage popStage = new Stage();
                 popStage.setScene(scene);
-                popStage.setTitle("About the App!");
+                popStage.setTitle("Value Error");
                 popStage.setResizable(false);
                 popStage.show();
+        }
+        catch (ArithmeticException e) {
+            Parent root = FXMLLoader.load(getClass().getResource("promptErrorTwo.fxml"));
+            Scene scene = new Scene(root);
+
+            Stage popStage = new Stage();
+            popStage.setScene(scene);
+            popStage.setTitle("Serial Number Error");
+            popStage.setResizable(false);
+            popStage.show();
         }
     }
 
@@ -75,15 +96,9 @@ public class menuEdit {
         return list;
     }
 
-    // Delete prompt is closed
+    // Delete/Error prompt is closed
     public void clickButtonOk() {
         Stage stage = (Stage) buttonOk.getScene().getWindow();
-        stage.close();
-    }
-
-    // Error prompt is closed
-    public void clickButtonOkTwo() {
-        Stage stage = (Stage) buttonOkTwo.getScene().getWindow();
         stage.close();
     }
 }

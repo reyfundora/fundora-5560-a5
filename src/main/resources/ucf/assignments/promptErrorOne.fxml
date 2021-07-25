@@ -21,7 +21,7 @@
                         <Font size="13.0" />
                     </font>
                 </Label>
-            <Button fx:id="buttonOkTwo" layoutX="278.0" layoutY="54.0" mnemonicParsing="false" onAction="#clickButtonOkTwo" prefHeight="25.0" prefWidth="67.0" text="OK">
+            <Button fx:id="buttonOk" layoutX="278.0" layoutY="54.0" mnemonicParsing="false" onAction="#clickButtonOk" prefHeight="25.0" prefWidth="67.0" text="OK">
                <effect>
                   <Glow />
                </effect>

@@ -76,11 +76,8 @@ public class appController implements Initializable {
 
     public void rightClickDelete() {
         // Deletes selected items
-        ObservableList<itemSetGet> selectedRows, allItems;
-        allItems = tableView.getItems();
-        selectedRows = tableView.getSelectionModel().getSelectedItems();
-
-        allItems.removeAll(selectedRows);
+        int index = tableView.getSelectionModel().getSelectedIndex();
+        if (index >= 0) tableView.getItems().remove(index);
     }
 
     // Controller section for TableView
