@@ -3,12 +3,14 @@ package ucf.assignments;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
@@ -91,24 +93,13 @@ public class appController implements Initializable {
     }
 
     // Controller section for TableView
-    @FXML
-    public TableView<itemSetGet> tableView;
-    @FXML
-    public TableColumn<itemSetGet, String> columnValue;
-    @FXML
-    public TableColumn<itemSetGet, String> columnSerial;
-    @FXML
-    public TableColumn<itemSetGet, String> columnName;
+    @FXML public TableView<itemSetGet> tableView;
+    @FXML public TableColumn<itemSetGet, String> columnValue;
+    @FXML public TableColumn<itemSetGet, String> columnSerial;
+    @FXML public TableColumn<itemSetGet, String> columnName;
 
-    // Controller section for TableView for search
-    @FXML
-    public TableView<itemSetGet> tableViewSearch;
-    @FXML
-    public TableColumn<itemSetGet, String> columnValueSearch;
-    @FXML
-    public TableColumn<itemSetGet, String> columnSerialSearch;
-    @FXML
-    public TableColumn<itemSetGet, String> columnNameSearch;
+    @FXML public ListView<String> listView;
+    ObservableList<String> search = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -183,41 +174,41 @@ public class appController implements Initializable {
 
             columnName.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("name"));
             columnName.setCellFactory(TextFieldTableCell.forTableColumn());
-
-            // Initialize search results
-            columnValueSearch.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("value"));
-            columnSerialSearch.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("serial"));
-            columnNameSearch.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("name"));
         } catch (NullPointerException e) { System.out.print("null"); }
+
+        // Initialize list that has search results
+        try {
+            listView.setCellFactory(TextFieldListCell.forListView());
+        } catch (NullPointerException e) { System.out.print(""); }
     }
 
-    public ObservableList<itemSetGet> clickSearch() {
+    public void clickSearch() {
         try {
             // Checks to see if there is any input
             if (itemCounter == 0) {
                 System.out.print("No inputs");
-                return null;
             }
 
-            // Prompts search results in a new window
-            Parent root = FXMLLoader.load(getClass().getResource("promptSearchResult.fxml"));
-            Scene scene = new Scene(root);
+            if (itemCounter > 0) {
+                // Prompts search results in a new window
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("promptSearchResult.fxml"));
+                Scene scene = new Scene(loader.load());
 
-            Stage searchStage = new Stage();
-            searchStage.setScene(scene);
-            searchStage.setTitle("Search results: ");
-            searchStage.show();
+                Stage searchStage = new Stage();
+                searchStage.setScene(scene);
+                searchStage.setTitle("Search results: ");
+                searchStage.show();
 
-            ObservableList<itemSetGet> list = FXCollections.observableArrayList();
-
-            list.add(new itemSetGet(values.get(0), serials.get(0), names.get(0)));
-
-            return list;
+                runSearch(values.get(0));
+            }
         }
         catch (IOException e){
             e.printStackTrace();
         }
-        return null;
+    }
+
+    public void runSearch(String items) {
+        listView.getItems().add(items);
     }
 
     public void clickDone() {

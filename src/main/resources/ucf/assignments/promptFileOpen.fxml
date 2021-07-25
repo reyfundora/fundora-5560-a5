@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane focusTraversable="true" pickOnBounds="false" prefHeight="218.0" prefWidth="370.0" style="-fx-background-color: #d2b4de;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.menuFile">
+    <children>
+        <Pane layoutX="-27.0" layoutY="-32.0" prefHeight="118.0" prefWidth="367.0" style="-fx-background-color: #f4ecf7;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+            <children>
+                <Label layoutX="24.0" layoutY="14.0" prefHeight="20.0" prefWidth="320.0" text="The app supports .txt, .html, and .json files.">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Button fx:id="buttonAdd" layoutX="278.0" layoutY="122.0" mnemonicParsing="false" onAction="#clickFileOpen" prefHeight="25.0" prefWidth="67.0" text="Add">
+                    <effect>
+                        <Glow />
+                    </effect>
+                </Button>
+                <Label layoutX="25.0" layoutY="34.0" prefHeight="20.0" prefWidth="320.0" text="Please write out the directory you would like the">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="25.0" layoutY="54.0" prefHeight="20.0" prefWidth="320.0" text="app to open from using the following format:">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="25.0" layoutY="84.0" prefHeight="20.0" prefWidth="320.0" text="C:\\Users\\...\\...\\...">
+                    <font>
+                        <Font name="System Bold" size="14.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="openInput" layoutX="25.0" layoutY="122.0" prefHeight="25.0" prefWidth="244.0" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
