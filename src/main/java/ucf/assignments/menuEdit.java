@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -49,6 +50,15 @@ public class menuEdit {
                 int error = 10 / 0;
             }
 
+            // Checks if serial number is already in use
+            for (int i = 0; i < itemCounter; i++) {
+                if (serials.get(itemCounter - 1).equals(serial)) {
+                    String nullError = null;
+                    if (nullError.equals("null error exception"))
+                        System.out.print("error");
+                }
+            }
+
             // Checks if name is between 2 and 256 characters
             String name = addName.getText();
             if (name.length() < 2 || name.length() > 256) {
@@ -80,6 +90,17 @@ public class menuEdit {
         // Error prompt that explains the need for correct serial format
         catch (ArithmeticException e) {
             Parent root = FXMLLoader.load(getClass().getResource("promptErrorTwo.fxml"));
+            Scene scene = new Scene(root);
+
+            Stage popStage = new Stage();
+            popStage.setScene(scene);
+            popStage.setTitle("Serial Number Error");
+            popStage.setResizable(false);
+            popStage.show();
+        }
+        // Error prompt that shows when serial number is already in use
+        catch (NullPointerException e) {
+            Parent root = FXMLLoader.load(getClass().getResource("promptErrorFour.fxml"));
             Scene scene = new Scene(root);
 
             Stage popStage = new Stage();
