@@ -1,15 +1,12 @@
 package ucf.assignments;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
@@ -18,7 +15,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static ucf.assignments.menuEdit.*;
+
 public class appController implements Initializable {
+    public TextField textSearch;
+    public Button buttonDone;
 
     // Controller section for File menu
     public void clickOpen() {
@@ -27,9 +28,12 @@ public class appController implements Initializable {
     public void clickSave() {
     }
 
+    // Closes the program
     public void clickClose() {
         Platform.exit();
     }
+
+
 
     // Controller section for Help menu
     public void clickGettingStarted() {
@@ -90,9 +94,20 @@ public class appController implements Initializable {
     @FXML
     public TableColumn<itemSetGet, String> columnName;
 
+    // Controller section for TableView for search
+    @FXML
+    public TableView<itemSetGet> tableViewSearch;
+    @FXML
+    public TableColumn<itemSetGet, String> columnValueSearch;
+    @FXML
+    public TableColumn<itemSetGet, String> columnSerialSearch;
+    @FXML
+    public TableColumn<itemSetGet, String> columnNameSearch;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            // Initialize main table
             tableView.setEditable(true);
 
             columnValue.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("value"));
@@ -104,8 +119,46 @@ public class appController implements Initializable {
             columnName.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("name"));
             columnName.setCellFactory(TextFieldTableCell.forTableColumn());
 
+            // Initialize search results
+            columnValueSearch.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("value"));
+            columnSerialSearch.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("serial"));
+            columnNameSearch.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("name"));
         } catch (NullPointerException e) { System.out.print("null"); }
     }
 
+    public void clickSearch() {
+        try {
+            // Checks to see if there is any input
+            if (itemCounter == 0) {
+                System.out.print("No inputs");
+                return;
+            }
 
+            // Prompts search results in a new window
+            Parent root = FXMLLoader.load(getClass().getResource("promptSearchResult.fxml"));
+            Scene scene = new Scene(root);
+
+            Stage searchStage = new Stage();
+            searchStage.setScene(scene);
+            searchStage.setTitle("Search results: ");
+            tableView.setItems(getTableSearch());
+            searchStage.show();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public ObservableList<itemSetGet> getTableSearch() {
+        ObservableList<itemSetGet> list = FXCollections.observableArrayList();
+
+        list.add(new itemSetGet(values.get(0), serials.get(0), names.get(0)));
+
+        return list;
+    }
+
+    public void clickDone() {
+        Stage stage = (Stage) buttonDone.getScene().getWindow();
+        stage.close();
+    }
 }

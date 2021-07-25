@@ -77,6 +77,7 @@ public class menuEdit {
                 popStage.setResizable(false);
                 popStage.show();
         }
+        // Error prompt that explains the need for correct serial format
         catch (ArithmeticException e) {
             Parent root = FXMLLoader.load(getClass().getResource("promptErrorTwo.fxml"));
             Scene scene = new Scene(root);
@@ -87,6 +88,7 @@ public class menuEdit {
             popStage.setResizable(false);
             popStage.show();
         }
+        // Error prompt that explains the need for 2 to 256 characters in name
         catch (ArrayIndexOutOfBoundsException e) {
             Parent root = FXMLLoader.load(getClass().getResource("promptErrorThree.fxml"));
             Scene scene = new Scene(root);
