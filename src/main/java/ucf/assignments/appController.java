@@ -3,6 +3,7 @@ package ucf.assignments;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static ucf.assignments.menuEdit.*;
@@ -20,6 +22,9 @@ import static ucf.assignments.menuEdit.*;
 public class appController implements Initializable {
     public TextField textSearch;
     public Button buttonDone;
+
+    static ArrayList<String> edits = new ArrayList<>();
+    static int editCounter;
 
     // Controller section for File menu
     public void clickOpen() {
@@ -115,6 +120,45 @@ public class appController implements Initializable {
 
             columnSerial.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("serial"));
             columnSerial.setCellFactory(TextFieldTableCell.forTableColumn());
+            columnSerial.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<itemSetGet, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<itemSetGet, String> event) {
+                    try {
+                        itemSetGet serial = event.getRowValue();
+                        String edit = event.getNewValue();
+                        for (int i = 0; i < itemCounter; i++) {
+                            if (serials.get(0).equals(edit)) {
+                                int j = 10 / 0;
+                            }
+                            if (serials.get(itemCounter - 1).equals(edit)) {
+                                int j = 10 / 0;
+                            }
+                            if (editCounter > 0) {
+                                if (edits.get(editCounter - 1).equals(edit)) {
+                                    int j = 10 / 0;
+                                }
+                            }
+                        }
+
+                        edits.add(edit);
+                        editCounter++;
+                        serial.setSerial(event.getNewValue());
+                    }
+                    catch (ArithmeticException e) {
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("promptErrorFour.fxml"));
+                            Scene scene = new Scene(root);
+
+                            Stage popStage = new Stage();
+                            popStage.setScene(scene);
+                            popStage.setTitle("Serial Number Error");
+                            popStage.setResizable(false);
+                            popStage.show();
+                        }
+                        catch (IOException r) {System.out.print("");}
+                    }
+                }
+            });
 
             columnName.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("name"));
             columnName.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -137,7 +181,7 @@ public class appController implements Initializable {
                 if (serials.get(itemCounter - 1).equals(edit)) {
                     int j = 10 / 0;
                 }
-                
+
             }
         }
         catch (ArithmeticException e) {
