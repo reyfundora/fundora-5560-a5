@@ -84,6 +84,8 @@ public class appController implements Initializable {
             tableView.setEditable(true);
 
             columnValue.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("value"));
+            columnValue.setCellFactory(TextFieldTableCell.forTableColumn());
+
 
             columnSerial.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("serial"));
             columnSerial.setCellFactory(TextFieldTableCell.forTableColumn());

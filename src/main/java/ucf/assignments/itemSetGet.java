@@ -1,27 +1,24 @@
 package ucf.assignments;
 
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class itemSetGet {
-    private SimpleDoubleProperty value;
-    private SimpleStringProperty serial, name;
+    private SimpleStringProperty value, serial, name;
 
-    public itemSetGet(Double value, String serial, String name) {
-        this.value = new SimpleDoubleProperty(value);
+    public itemSetGet(String value, String serial, String name) {
+        this.value = new SimpleStringProperty(value);
         this.serial = new SimpleStringProperty(serial);
         this.name = new SimpleStringProperty(name);
     }
 
     // Set and Get for Value
-    public Double getValue() {
+    public String getValue() {
         return value.get();
     }
-    public SimpleDoubleProperty valueProperty() {
+    public SimpleStringProperty valueProperty() {
         return value;
     }
-    public void setValue(Double value) {
+    public void setValue(String value) {
         this.value.set(value);
     }
 

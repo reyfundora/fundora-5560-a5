@@ -7,38 +7,61 @@ package ucf.assignments;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 public class menuEdit {
     public appController appController;
     public TextArea addValue, addSerial, addName;
-    public Button buttonAdd, buttonOk;
+    public Button buttonAdd, buttonOk, buttonOkTwo;
 
-    static ArrayList<Double> values = new ArrayList<>();
+    static ArrayList<String> values = new ArrayList<>();
     static ArrayList<String> serials = new ArrayList<>();
     static ArrayList<String> names = new ArrayList<>();
     static int itemCounter;
 
-    public void clickButtonAdd() {
-        // Turns user input into readable variables
-        Double value = Double.parseDouble(addValue.getText());
-        String serial = addSerial.getText();
-        String name = addName.getText();
+    public void clickButtonAdd() throws IOException {
+        try {
+            // Checks if inputted value is compatible with dollar output
+            Double value = Double.parseDouble(addValue.getText());
+            BigDecimal bdValue = new BigDecimal(value).setScale(2, RoundingMode.HALF_DOWN);
+            String bdValueString = String.valueOf(bdValue);
+            String outputValue = "$" + bdValueString;
+            values.add(outputValue);
 
-        // Adds inputs to an organizable arraylist
-        values.add(value);
-        serials.add(serial);
-        names.add(name);
-        itemCounter++;
+            // Turns user input for serial and name into readable variables
+            String serial = addSerial.getText();
+            String name = addName.getText();
 
-        Stage stage = (Stage) buttonAdd.getScene().getWindow();
-        stage.close();
+            // Adds inputs to an organizable arraylist
+            serials.add(serial);
+            names.add(name);
+            itemCounter++;
 
-        appController.tableView.setItems(getTable());
+            Stage stage = (Stage) buttonAdd.getScene().getWindow();
+            stage.close();
+
+            appController.tableView.setItems(getTable());
+        }
+        // Error prompt that explains the need for only numerical input
+        catch (Exception e) {
+                Parent root = FXMLLoader.load(getClass().getResource("promptErrorOne.fxml"));
+                Scene scene = new Scene(root);
+
+                Stage popStage = new Stage();
+                popStage.setScene(scene);
+                popStage.setTitle("About the App!");
+                popStage.setResizable(false);
+                popStage.show();
+        }
     }
 
     // Method that is called once the 'Add' button is clicked
@@ -55,6 +78,12 @@ public class menuEdit {
     // Delete prompt is closed
     public void clickButtonOk() {
         Stage stage = (Stage) buttonOk.getScene().getWindow();
+        stage.close();
+    }
+
+    // Error prompt is closed
+    public void clickButtonOkTwo() {
+        Stage stage = (Stage) buttonOkTwo.getScene().getWindow();
         stage.close();
     }
 }
