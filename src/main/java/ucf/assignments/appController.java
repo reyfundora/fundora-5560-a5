@@ -126,6 +126,32 @@ public class appController implements Initializable {
         } catch (NullPointerException e) { System.out.print("null"); }
     }
 
+    // Checks to see is edited serial number is already in use
+    public void checkSerialEdit(TableColumn.CellEditEvent<itemSetGet, String> itemSetGetStringCellEditEvent) throws IOException {
+        try {
+            String edit = itemSetGetStringCellEditEvent.getNewValue();
+            for (int i = 0; i < itemCounter; i++) {
+                if (serials.get(0).equals(edit)) {
+                    int j = 10 / 0;
+                }
+                if (serials.get(itemCounter - 1).equals(edit)) {
+                    int j = 10 / 0;
+                }
+                
+            }
+        }
+        catch (ArithmeticException e) {
+            Parent root = FXMLLoader.load(getClass().getResource("promptErrorFour.fxml"));
+            Scene scene = new Scene(root);
+
+            Stage popStage = new Stage();
+            popStage.setScene(scene);
+            popStage.setTitle("Serial Number Error");
+            popStage.setResizable(false);
+            popStage.show();
+        }
+    }
+
     public void clickSearch() {
         try {
             // Checks to see if there is any input
@@ -141,7 +167,7 @@ public class appController implements Initializable {
             Stage searchStage = new Stage();
             searchStage.setScene(scene);
             searchStage.setTitle("Search results: ");
-            tableView.setItems(getTableSearch());
+            tableViewSearch.setItems(getTableSearch());
             searchStage.show();
         }
         catch (IOException e){
@@ -161,4 +187,6 @@ public class appController implements Initializable {
         Stage stage = (Stage) buttonDone.getScene().getWindow();
         stage.close();
     }
+
+
 }
