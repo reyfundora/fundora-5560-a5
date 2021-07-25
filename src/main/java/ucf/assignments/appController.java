@@ -121,6 +121,8 @@ public class appController implements Initializable {
             columnSerial.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("serial"));
             columnSerial.setCellFactory(TextFieldTableCell.forTableColumn());
             columnSerial.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<itemSetGet, String>>() {
+
+                // Checks to see if serial number is the same as an existing number on edit
                 @Override
                 public void handle(TableColumn.CellEditEvent<itemSetGet, String> event) {
                     try {
@@ -139,6 +141,10 @@ public class appController implements Initializable {
                                 }
                             }
                         }
+                        if (edit.length() != 10) {
+                            int[] errorArray = new int[1];
+                            errorArray[5] = 1;
+                        }
 
                         edits.add(edit);
                         editCounter++;
@@ -147,6 +153,19 @@ public class appController implements Initializable {
                     catch (ArithmeticException e) {
                         try {
                             Parent root = FXMLLoader.load(getClass().getResource("promptErrorFour.fxml"));
+                            Scene scene = new Scene(root);
+
+                            Stage popStage = new Stage();
+                            popStage.setScene(scene);
+                            popStage.setTitle("Serial Number Error");
+                            popStage.setResizable(false);
+                            popStage.show();
+                        }
+                        catch (IOException r) {System.out.print("");}
+                    }
+                    catch (ArrayIndexOutOfBoundsException e) {
+                        try {
+                            Parent root = FXMLLoader.load(getClass().getResource("promptErrorTwo.fxml"));
                             Scene scene = new Scene(root);
 
                             Stage popStage = new Stage();
