@@ -28,9 +28,10 @@ public class appController implements Initializable {
 
     // Controller section for File menu
     public void clickOpen() {
+        new menuFile().runOpen();
     }
-
     public void clickSave() {
+        new menuFile().runSave();
     }
 
     // Closes the program
@@ -38,13 +39,10 @@ public class appController implements Initializable {
         Platform.exit();
     }
 
-
-
     // Controller section for Help menu
     public void clickGettingStarted() {
         new menuHelp().runGettingStarted();
     }
-
     public void clickAbout() {
         new menuHelp().runAbout();
     }
@@ -67,7 +65,6 @@ public class appController implements Initializable {
             e.printStackTrace();
         }
     }
-
     public void clickDelete() {
         // Prompt that explains to the user that you have to right click items to delete them
         try {
@@ -82,7 +79,6 @@ public class appController implements Initializable {
             e.printStackTrace();
         }
     }
-
     public void rightClickDelete() {
         // Deletes selected items
         int index = tableView.getSelectionModel().getSelectedIndex();
@@ -141,6 +137,7 @@ public class appController implements Initializable {
                                 }
                             }
                         }
+                        // Checks to see if new edit is correct serial format
                         if (edit.length() != 10) {
                             int[] errorArray = new int[1];
                             errorArray[5] = 1;
@@ -189,34 +186,8 @@ public class appController implements Initializable {
         } catch (NullPointerException e) { System.out.print("null"); }
     }
 
-    // Checks to see is edited serial number is already in use
-    public void checkSerialEdit(TableColumn.CellEditEvent<itemSetGet, String> itemSetGetStringCellEditEvent) throws IOException {
-        try {
-            String edit = itemSetGetStringCellEditEvent.getNewValue();
-            for (int i = 0; i < itemCounter; i++) {
-                if (serials.get(0).equals(edit)) {
-                    int j = 10 / 0;
-                }
-                if (serials.get(itemCounter - 1).equals(edit)) {
-                    int j = 10 / 0;
-                }
-
-            }
-        }
-        catch (ArithmeticException e) {
-            Parent root = FXMLLoader.load(getClass().getResource("promptErrorFour.fxml"));
-            Scene scene = new Scene(root);
-
-            Stage popStage = new Stage();
-            popStage.setScene(scene);
-            popStage.setTitle("Serial Number Error");
-            popStage.setResizable(false);
-            popStage.show();
-        }
-    }
-
     public void clickSearch() {
-        try {
+        /*try {
             // Checks to see if there is any input
             if (itemCounter == 0) {
                 System.out.print("No inputs");
@@ -235,7 +206,7 @@ public class appController implements Initializable {
         }
         catch (IOException e){
             e.printStackTrace();
-        }
+        }*/
     }
 
     public ObservableList<itemSetGet> getTableSearch() {
@@ -250,6 +221,4 @@ public class appController implements Initializable {
         Stage stage = (Stage) buttonDone.getScene().getWindow();
         stage.close();
     }
-
-
 }

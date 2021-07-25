@@ -41,7 +41,7 @@
       <TableView fx:id="tableView" editable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <columns>
           <TableColumn fx:id="columnValue" minWidth="1.0" prefWidth="150.0" text="Value" />
-          <TableColumn fx:id="columnSerial" minWidth="1.0" onEditCommit="#checkSerialEdit" prefWidth="150.0" text="Serial Number" />
+          <TableColumn fx:id="columnSerial" minWidth="1.0" prefWidth="150.0" text="Serial Number" />
             <TableColumn fx:id="columnName" minWidth="300.0" prefWidth="150.0" text="Name" />
         </columns>
          <columnResizePolicy>
