@@ -191,12 +191,12 @@ public class appController implements Initializable {
         } catch (NullPointerException e) { System.out.print("null"); }
     }
 
-    public void clickSearch() {
-        /*try {
+    public ObservableList<itemSetGet> clickSearch() {
+        try {
             // Checks to see if there is any input
             if (itemCounter == 0) {
                 System.out.print("No inputs");
-                return;
+                return null;
             }
 
             // Prompts search results in a new window
@@ -206,20 +206,18 @@ public class appController implements Initializable {
             Stage searchStage = new Stage();
             searchStage.setScene(scene);
             searchStage.setTitle("Search results: ");
-            tableViewSearch.setItems(getTableSearch());
             searchStage.show();
+
+            ObservableList<itemSetGet> list = FXCollections.observableArrayList();
+
+            list.add(new itemSetGet(values.get(0), serials.get(0), names.get(0)));
+
+            return list;
         }
         catch (IOException e){
             e.printStackTrace();
-        }*/
-    }
-
-    public ObservableList<itemSetGet> getTableSearch() {
-        ObservableList<itemSetGet> list = FXCollections.observableArrayList();
-
-        list.add(new itemSetGet(values.get(0), serials.get(0), names.get(0)));
-
-        return list;
+        }
+        return null;
     }
 
     public void clickDone() {
