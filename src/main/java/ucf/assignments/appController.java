@@ -1,9 +1,13 @@
 package ucf.assignments;
 
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -56,6 +60,7 @@ public class appController implements Initializable {
     }
 
     public void clickDelete() {
+        // Prompt that explains to the user that you have to right click items to delete them
         try {
             Parent root = FXMLLoader.load(getClass().getResource("promptDelete.fxml"));
             Scene scene = new Scene(root);
@@ -69,6 +74,15 @@ public class appController implements Initializable {
         }
     }
 
+    public void rightClickDelete() {
+        // Deletes selected items
+        ObservableList<itemSetGet> selectedRows, allItems;
+        allItems = tableView.getItems();
+        selectedRows = tableView.getSelectionModel().getSelectedItems();
+
+        allItems.removeAll(selectedRows);
+    }
+
     // Controller section for TableView
     @FXML
     public TableView<itemSetGet> tableView;
@@ -78,6 +92,7 @@ public class appController implements Initializable {
     public TableColumn<itemSetGet, String> columnSerial;
     @FXML
     public TableColumn<itemSetGet, String> columnName;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
@@ -85,7 +100,6 @@ public class appController implements Initializable {
 
             columnValue.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("value"));
             columnValue.setCellFactory(TextFieldTableCell.forTableColumn());
-
 
             columnSerial.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("serial"));
             columnSerial.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -95,4 +109,6 @@ public class appController implements Initializable {
 
         } catch (NullPointerException e) { System.out.print("null"); }
     }
+
+
 }
