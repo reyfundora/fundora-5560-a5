@@ -1,21 +1,18 @@
 package ucf.assignments;
 
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import static ucf.assignments.menuEdit.*;
 
 public class appController implements Initializable {
 
@@ -53,8 +50,7 @@ public class appController implements Initializable {
             popStage.setTitle("New Item!");
             popStage.setResizable(false);
             popStage.show();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -68,22 +64,33 @@ public class appController implements Initializable {
             popStage.setScene(scene);
             popStage.setTitle("Delete Item!");
             popStage.show();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     // Controller section for TableView
-    @FXML public TableView<itemSetGet> tableView;
-    @FXML public TableColumn<itemSetGet, Double> columnValue;
-    @FXML public TableColumn<itemSetGet, String> columnSerial;
-    @FXML public TableColumn<itemSetGet, String> columnName;
-
+    @FXML
+    public TableView<itemSetGet> tableView;
+    @FXML
+    public TableColumn<itemSetGet, String> columnValue;
+    @FXML
+    public TableColumn<itemSetGet, String> columnSerial;
+    @FXML
+    public TableColumn<itemSetGet, String> columnName;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        columnValue.setCellValueFactory(new PropertyValueFactory<itemSetGet, Double>("value"));
-        columnSerial.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("serial"));
-        columnName.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("name"));
+        try {
+            tableView.setEditable(true);
+
+            columnValue.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("value"));
+
+            columnSerial.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("serial"));
+            columnSerial.setCellFactory(TextFieldTableCell.forTableColumn());
+
+            columnName.setCellValueFactory(new PropertyValueFactory<itemSetGet, String>("name"));
+            columnName.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        } catch (NullPointerException e) { System.out.print("null"); }
     }
 }
