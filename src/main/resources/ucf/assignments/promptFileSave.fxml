@@ -17,7 +17,7 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Button fx:id="jsonButton" layoutX="278.0" layoutY="197.0" mnemonicParsing="false" onAction="#clickjsonButton" prefHeight="25.0" prefWidth="67.0" text="Add">
+                <Button fx:id="saveButton" layoutX="278.0" layoutY="197.0" mnemonicParsing="false" onAction="#clickjsonButton" prefHeight="25.0" prefWidth="67.0" text="Add">
                     <effect>
                         <Glow />
                     </effect>
@@ -45,12 +45,12 @@
             </Label>
             <TextField fx:id="htmlInput" layoutX="25.0" layoutY="165.0" prefHeight="25.0" prefWidth="244.0" promptText="HTML File ending in .html" />
             <TextField fx:id="txtInput" layoutX="25.0" layoutY="134.0" prefHeight="25.0" prefWidth="244.0" promptText="TSV File ending in .txt" />
-            <Button fx:id="htmlButton" layoutX="278.0" layoutY="165.0" mnemonicParsing="false" onAction="#clickhtmlButton" prefHeight="25.0" prefWidth="67.0" text="Add">
+            <Button fx:id="saveButton2" layoutX="278.0" layoutY="165.0" mnemonicParsing="false" onAction="#clickhtmlButton" prefHeight="25.0" prefWidth="67.0" text="Add">
                <effect>
                   <Glow />
                </effect>
             </Button>
-            <Button fx:id="txtButton" layoutX="278.0" layoutY="134.0" mnemonicParsing="false" onAction="#clicktxtButton" prefHeight="25.0" prefWidth="67.0" text="Add">
+            <Button fx:id="saveButton3" layoutX="278.0" layoutY="134.0" mnemonicParsing="false" onAction="#clicktxtButton" prefHeight="25.0" prefWidth="67.0" text="Add">
                <effect>
                   <Glow />
                </effect>

@@ -1,27 +1,21 @@
 package ucf.assignments;
 
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import javafx.stage.Stage;
+import java.io.*;
+
+import static ucf.assignments.menuEdit.*;
 
 public class menuFile {
 
-    public Button buttonAdd, txtButton, htmlButton, jsonButton;
+    public Button buttonAdd, saveButton, saveButton2, saveButton3;
     public TextField openInput, txtInput, htmlInput, jsonInput;
+
 
     // Opens a file using a user inputted directory
     public void runOpen() {
@@ -59,14 +53,35 @@ public class menuFile {
         }
     }
 
+    public void clicktxtButton() throws IOException {
+        FileWriter tsv = new FileWriter(String.valueOf(txtInput));
+        for (int i = 0; i < itemCounter; i++) {
+            tsv.write(values.get(itemCounter - 1) + "\t" + serials.get(itemCounter - 1) + "\t" +
+                    names.get(itemCounter - 1) + "\t");
+            tsv.write("\n");
+            tsv.close();
+        }
 
-
-    public void clickhtmlButton(ActionEvent actionEvent) {
+        Stage stage = (Stage) saveButton.getScene().getWindow();
+        stage.close();
     }
 
-    public void clicktxtButton(ActionEvent actionEvent) {
+    public void clickhtmlButton() {
+        File html = new File(String.valueOf(htmlInput));
+        for (int i = 0; i < itemCounter; i++) {
+        }
+
+        Stage stage = (Stage) saveButton2.getScene().getWindow();
+        stage.close();
     }
 
-    public void clickjsonButton(ActionEvent actionEvent) {
+    public void clickjsonButton() {
+        File json = new File(String.valueOf(jsonInput));
+        for (int i = 0; i < itemCounter; i++) {
+
+        }
+
+        Stage stage = (Stage) saveButton3.getScene().getWindow();
+        stage.close();
     }
 }
