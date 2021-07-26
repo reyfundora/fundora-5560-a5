@@ -127,7 +127,7 @@ public class menuEdit {
         ObservableList<itemSetGet> list = FXCollections.observableArrayList();
 
         // Uses for loop to add all values from respective arraylists.
-        for (int i =0; i < itemCounter; i++)
+        for (int i = 0; i < itemCounter; i++)
             list.add(new itemSetGet(values.get(i), serials.get(i), names.get(i)));
 
         return list;

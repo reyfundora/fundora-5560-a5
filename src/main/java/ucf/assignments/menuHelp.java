@@ -16,6 +16,7 @@ public class menuHelp {
 
     // Prompts a pop up with a detailed paragraph on how to use the app
     public void runGettingStarted() {
+        testGettingStarted++;
         try {
             Parent root = FXMLLoader.load(getClass().getResource("promptTutorial.fxml"));
             Scene scene = new Scene(root);
@@ -28,13 +29,12 @@ public class menuHelp {
         catch (IOException e){
             e.printStackTrace();
         }
-
-        testGettingStarted++;
     }
 
     // Prompts a pop up with creator name, school name, class and professor names,
     // and copyright info.
     public void runAbout() {
+        testAbout++;
         try {
             Parent root = FXMLLoader.load(getClass().getResource("promptAbout.fxml"));
             Scene scene = new Scene(root);
@@ -47,7 +47,5 @@ public class menuHelp {
         catch (IOException e){
             e.printStackTrace();
         }
-
-        testAbout++;
     }
 }

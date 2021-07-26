@@ -26,7 +26,7 @@ public class appController implements Initializable {
     public Button buttonDone;
 
     static ArrayList<String> edits = new ArrayList<>();
-    static int editCounter;
+    static int editCounter, clickNewTest, clickDeleteTest;
 
     // Controller section for File menu
     public void clickOpen() {
