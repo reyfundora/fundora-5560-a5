@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane focusTraversable="true" pickOnBounds="false" prefHeight="286.0" prefWidth="370.0" style="-fx-background-color: #abebc6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.menuFile">
+<AnchorPane focusTraversable="true" pickOnBounds="false" prefHeight="261.0" prefWidth="370.0" style="-fx-background-color: #abebc6;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.menuFile">
     <children>
         <Pane layoutX="-27.0" layoutY="-32.0" prefHeight="118.0" prefWidth="367.0" style="-fx-background-color: #eafaf1;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
             <children>
@@ -17,17 +17,12 @@
                         <Font size="14.0" />
                     </font>
                 </Label>
-                <Button fx:id="saveButton" layoutX="278.0" layoutY="197.0" mnemonicParsing="false" onAction="#clickjsonButton" prefHeight="25.0" prefWidth="67.0" text="Add">
-                    <effect>
-                        <Glow />
-                    </effect>
-                </Button>
             <Label layoutX="25.0" layoutY="34.0" prefHeight="20.0" prefWidth="320.0" text=".txt, .html, and .json">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="25.0" layoutY="54.0" prefHeight="20.0" prefWidth="320.0" text="Use the respective text bar to decide which file">
+            <Label layoutX="25.0" layoutY="54.0" prefHeight="20.0" prefWidth="320.0" text="Use the text bars to create a file name and to">
                <font>
                   <Font size="14.0" />
                </font>
@@ -37,20 +32,14 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="jsonInput" layoutX="25.0" layoutY="197.0" prefHeight="25.0" prefWidth="244.0" promptText="JSON File ending in .json" />
-            <Label layoutX="25.0" layoutY="74.0" prefHeight="20.0" prefWidth="320.0" text="type to save in and use the following format:">
+            <Label layoutX="25.0" layoutY="74.0" prefHeight="20.0" prefWidth="320.0" text="select a directory with the following format:">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="htmlInput" layoutX="25.0" layoutY="165.0" prefHeight="25.0" prefWidth="244.0" promptText="HTML File ending in .html" />
-            <TextField fx:id="txtInput" layoutX="25.0" layoutY="134.0" prefHeight="25.0" prefWidth="244.0" promptText="TSV File ending in .txt" />
-            <Button fx:id="saveButton2" layoutX="278.0" layoutY="165.0" mnemonicParsing="false" onAction="#clickhtmlButton" prefHeight="25.0" prefWidth="67.0" text="Add">
-               <effect>
-                  <Glow />
-               </effect>
-            </Button>
-            <Button fx:id="saveButton3" layoutX="278.0" layoutY="134.0" mnemonicParsing="false" onAction="#clicktxtButton" prefHeight="25.0" prefWidth="67.0" text="Add">
+            <TextField fx:id="inputDir" layoutX="25.0" layoutY="165.0" prefHeight="25.0" prefWidth="244.0" promptText="File Directory (ex. C:\\Users\\...)" />
+            <TextField fx:id="inputName" layoutX="25.0" layoutY="134.0" prefHeight="25.0" prefWidth="244.0" promptText="File name (ex. inventory.txt)" />
+            <Button fx:id="saveButton" layoutX="278.0" layoutY="165.0" mnemonicParsing="false" onAction="#clickAdd" prefHeight="25.0" prefWidth="67.0" text="Add">
                <effect>
                   <Glow />
                </effect>

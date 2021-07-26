@@ -1,5 +1,6 @@
 package ucf.assignments;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,8 +14,8 @@ import static ucf.assignments.menuEdit.*;
 
 public class menuFile {
 
-    public Button buttonAdd, saveButton, saveButton2, saveButton3;
-    public TextField openInput, txtInput, htmlInput, jsonInput;
+    public Button buttonAdd, saveButton;
+    public TextField openInput, inputName, inputDir;
 
 
     // Opens a file using a user inputted directory
@@ -53,8 +54,9 @@ public class menuFile {
         }
     }
 
-    public void clicktxtButton() throws IOException {
-        FileWriter tsv = new FileWriter(String.valueOf(txtInput));
+    public void clickAdd() throws IOException {
+        File name = new File(String.valueOf(inputName));
+        FileWriter tsv = new FileWriter(String.valueOf(inputName));
         for (int i = 0; i < itemCounter; i++) {
             tsv.write(values.get(itemCounter - 1) + "\t" + serials.get(itemCounter - 1) + "\t" +
                     names.get(itemCounter - 1) + "\t");
@@ -63,25 +65,6 @@ public class menuFile {
         }
 
         Stage stage = (Stage) saveButton.getScene().getWindow();
-        stage.close();
-    }
-
-    public void clickhtmlButton() {
-        File html = new File(String.valueOf(htmlInput));
-        for (int i = 0; i < itemCounter; i++) {
-        }
-
-        Stage stage = (Stage) saveButton2.getScene().getWindow();
-        stage.close();
-    }
-
-    public void clickjsonButton() {
-        File json = new File(String.valueOf(jsonInput));
-        for (int i = 0; i < itemCounter; i++) {
-
-        }
-
-        Stage stage = (Stage) saveButton3.getScene().getWindow();
         stage.close();
     }
 }
