@@ -123,4 +123,16 @@ public class appTest  {
         // then
         assertEquals(expect, actual);
     }
+    @Test
+    void isRunSearchTestWorking() throws IOException {
+        // given
+        int expect = 0;
+        new appController();
+
+        // when
+        int actual = runSearchTest;
+
+        // then
+        assertEquals(expect, actual);
+    }
 }

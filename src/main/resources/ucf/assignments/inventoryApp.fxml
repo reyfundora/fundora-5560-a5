@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="392.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.appController">
    <children>
-      <MenuBar layoutX="20.0" layoutY="14.0" prefHeight="383.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar layoutX="20.0" layoutY="14.0" prefHeight="383.0" prefWidth="600.0" style="-fx-background-color: #f5cba7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -38,7 +38,7 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView fx:id="tableView" editable="true" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+      <TableView fx:id="tableView" editable="true" prefHeight="400.0" prefWidth="600.0" style="-fx-control-inner-background: #fdf2e9;" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
         <columns>
           <TableColumn fx:id="columnValue" minWidth="1.0" prefWidth="150.0" text="Value" />
           <TableColumn fx:id="columnSerial" minWidth="1.0" prefWidth="150.0" text="Serial Number" />
